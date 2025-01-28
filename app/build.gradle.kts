@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace = "com.example.headhunter"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.example.headhunter"
         minSdk = 24
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
@@ -50,6 +50,11 @@ android {
 }
 
 dependencies {
+    implementation(libs.coil.compose)
+    implementation(libs.coil.svg)
+    implementation("androidx.compose.material:material:1.7.6")
+    implementation("androidx.navigation:navigation-compose:2.8.5")
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -58,6 +63,8 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.androidx.navigation.runtime.ktx)
+    implementation(libs.androidx.navigation.compose)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
