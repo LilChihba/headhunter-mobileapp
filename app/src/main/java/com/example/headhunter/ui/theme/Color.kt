@@ -13,20 +13,20 @@ val Pink40 = Color(0xFF7D5260)
 // --------------BASIC--------------
 
 val Black = Color(0xFF000000)
-val Grey1 = Color(0xFF9F9F9F)
-val Grey2 = Color(0xFF9F9F9F)
-val Grey3 = Color(0xFF9F9F9F)
-val Grey4 = Color(0xFF9F9F9F)
-val Grey5 = Color(0xFF9F9F9F)
+val Grey1 = Color(0xFF222325)
+val Grey2 = Color(0xFF313234)
+val Grey3 = Color(0xFF848587)
+val Grey4 = Color(0xFF9E9E9E)
+val Grey5 = Color(0xFFDADADA)
 val White = Color(0xFFFFFFFF)
 
 // --------------SPECIAL--------------
 
-val Blue = Color(0xFF2B7EFE)
-val DarkBlue = Color(0xFF00427D)
-val Green = Color(0xFF4CB24E)
+val Blue = Color(0xFF2B7DFC)
+val DarkBlue = Color(0xFF00427C)
+val Green = Color(0xFF4CB14E)
 val DarkGreen = Color(0xFF015905)
-val Red = Color(0xFFFF0000)
+val Red = Color(0xFFFD0000)
 
 // --------------SHADOW--------------
 
