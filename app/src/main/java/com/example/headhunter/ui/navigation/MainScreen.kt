@@ -4,18 +4,28 @@ import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import androidx.compose.ui.Modifier
 import com.example.headhunter.ui.pages.FavoritePage
 import com.example.headhunter.ui.pages.MessagePage
 import com.example.headhunter.ui.pages.ProfilePage
 import com.example.headhunter.ui.pages.ResponsePage
 import com.example.headhunter.ui.pages.SearchPage
+import com.example.headhunter.viewmodels.ResponseViewModel
 
 @Composable
-fun MainScreen() {
+fun MainScreen(
+    viewModel: ResponseViewModel = viewModel()
+) {
+    val jsonString = LocalContext.current.assets.open("json.json").bufferedReader().use { it.readText() }
+    viewModel.loadResponse(jsonString)
+    val responseData = viewModel.response.collectAsState().value
+
     val navController = rememberNavController()
 
     Scaffold(
@@ -27,7 +37,7 @@ fun MainScreen() {
             startDestination = BottomNavItem.SearchPage.route,
             modifier = Modifier.padding(innerPadding),
         ) {
-            composable(BottomNavItem.SearchPage.route) { SearchPage() }
+            composable(BottomNavItem.SearchPage.route) { SearchPage(responseData) }
             composable(BottomNavItem.FavoritePage.route) { FavoritePage() }
             composable(BottomNavItem.ResponsePage.route) { ResponsePage() }
             composable(BottomNavItem.MessagePage.route) { MessagePage() }

@@ -2,10 +2,10 @@ package com.example.headhunter.ui.pages
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material.Button
@@ -13,6 +13,7 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.TextFieldDefaults.OutlinedTextFieldDecorationBox
 import androidx.compose.material.TextFieldDefaults.outlinedTextFieldColors
 import androidx.compose.material.ButtonDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
@@ -25,23 +26,31 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.*
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.example.headhunter.R
+import com.example.headhunter.models.Response
+import com.example.headhunter.ui.elements.CardVacancy
+import com.example.headhunter.ui.elements.Recommendation
 import com.example.headhunter.ui.theme.Grey2
 import com.example.headhunter.ui.theme.Grey4
 import com.example.headhunter.ui.theme.Shadows
 import com.example.headhunter.ui.theme.White
+import com.example.headhunter.ui.theme.text1
+import com.example.headhunter.ui.theme.title2
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterialApi::class)
 @Composable
-fun SearchPage() {
+fun SearchPage(
+    data: Response? = null
+) {
+    if (data == null) {
+        return
+    }
     val keyboardController = LocalSoftwareKeyboardController.current
     Column(
         modifier = Modifier
@@ -75,9 +84,7 @@ fun SearchPage() {
                         BasicTextField(
                             value = textSearch.value,
                             onValueChange = { newText -> textSearch.value = newText },
-                            textStyle = TextStyle(
-                                fontSize = 14.sp,
-                                fontWeight = FontWeight.Medium,
+                            textStyle = MaterialTheme.typography.text1.copy(
                                 color = Grey4
                             ),
                             singleLine = true,
@@ -106,9 +113,9 @@ fun SearchPage() {
                                     placeholder = {
                                         Text(
                                             text = "Должность, ключевые слова",
-                                            fontSize = 14.sp,
-                                            color = Grey4,
-                                            )
+                                            style = MaterialTheme.typography.text1,
+                                            color = Grey4
+                                        )
                                     }
                                 )
                             },
@@ -131,12 +138,33 @@ fun SearchPage() {
                         ) {
                             Icon(
                                 painter = painterResource(R.drawable.filter),
+                                tint = White,
                                 contentDescription = "filter",
                                 modifier = Modifier.fillMaxSize()
                             )
                         }
                     }
                 }
+                LazyRow(
+                    modifier = Modifier.padding(top = 18.dp)
+                ) {
+                    items(
+                        count = data.offers.size,
+                        key ={
+                            data.offers[it].title
+                        },
+                        itemContent = { index ->
+                            Recommendation(data.offers[index], LocalContext.current)
+                        }
+                    )
+                }
+                Text(
+                    text = "Вакансии для вас",
+                    style = MaterialTheme.typography.title2,
+                    modifier = Modifier
+                        .padding(top = 35.dp)
+                )
+                CardVacancy()
             }
         }
     }
