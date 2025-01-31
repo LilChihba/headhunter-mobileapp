@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -19,6 +20,7 @@ import com.example.headhunter.R
 import com.example.headhunter.ui.theme.Blue
 import com.example.headhunter.ui.theme.Grey4
 import com.example.headhunter.ui.theme.Shadows
+import com.example.headhunter.ui.theme.tab
 
 
 sealed class BottomNavItem(val route: String, @DrawableRes val icon: Int, val label: String, ) {
@@ -54,7 +56,7 @@ fun BottomNavigationBar(navController: NavController) {
                 ) },
                 label = { Text(
                     text = item.label,
-                    fontSize = 10.sp
+                    style = MaterialTheme.typography.tab
                 ) },
                 selected = currentRoute == item.route,
                 onClick = {
