@@ -4,13 +4,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.headhunter.models.Response
 import com.example.headhunter.modules.TrimmerString
-import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
-public class ResponseViewModel(
+class ResponseViewModel(
     jsonString: String = ""
 ): ViewModel() {
     private val _response = MutableStateFlow<Response?>(null)

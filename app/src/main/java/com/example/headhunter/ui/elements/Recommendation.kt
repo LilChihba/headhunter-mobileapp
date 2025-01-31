@@ -34,7 +34,6 @@ import com.example.headhunter.ui.theme.DarkBlue
 import com.example.headhunter.ui.theme.DarkGreen
 import com.example.headhunter.ui.theme.Green
 import com.example.headhunter.ui.theme.Grey1
-import com.example.headhunter.ui.theme.Grey2
 import com.example.headhunter.ui.theme.White
 import com.example.headhunter.ui.theme.text1
 import com.example.headhunter.ui.theme.title4
@@ -50,7 +49,7 @@ fun Recommendation(
             val intent = Intent(Intent.ACTION_VIEW, uri)
             context.startActivity(intent)
         },
-        colors = ButtonDefaults.buttonColors(containerColor = Grey2),
+        colors = ButtonDefaults.buttonColors(containerColor = Grey1),
         shape = ShapeDefaults.Small,
         contentPadding = PaddingValues(0.dp),
         modifier = Modifier.padding(end = 10.dp)
