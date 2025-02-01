@@ -14,9 +14,12 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.ShapeDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -34,11 +37,17 @@ import com.example.headhunter.ui.theme.button2
 import com.example.headhunter.ui.theme.text1
 import com.example.headhunter.ui.theme.title2
 import com.example.headhunter.ui.theme.title3
+import com.example.headhunter.viewmodels.ResponseViewModel
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
 
 @Composable
 fun CardVacancy(
-    vacancy: Vacancy
+    vacancy: Vacancy,
+    viewModel: ResponseViewModel
 ) {
+    var isFavorite by remember { mutableStateOf(vacancy.isFavorite) }
+
     Button(
         onClick = {  },
         colors = ButtonDefaults.buttonColors(containerColor = Grey1),
@@ -77,22 +86,28 @@ fun CardVacancy(
                         modifier = Modifier
                             .align(Alignment.TopEnd)
                     ){
-                        if(vacancy.isFavorite) {
-                            Icon(
-                                painter = painterResource(R.drawable.is_favorite),
-                                contentDescription = "isFavorite",
-                                tint = Blue,
-                                modifier = Modifier
-                                    .size(24.dp)
-                            )
-                        } else {
-                            Icon(
-                                painter = painterResource(R.drawable.favorite),
-                                contentDescription = "isFavorite",
-                                tint = Grey4,
-                                modifier = Modifier
-                                    .size(24.dp)
-                            )
+                        IconButton(
+                            onClick = {
+                                isFavorite = !isFavorite
+                                vacancy.isFavorite = isFavorite
+                                viewModel.updateVacancyFavorite(vacancy)
+                            },
+                            modifier = Modifier
+                                .size(24.dp)
+                        ) {
+                            if(isFavorite) {
+                                Icon(
+                                    painter = painterResource(R.drawable.is_favorite),
+                                    contentDescription = "isFavorite",
+                                    tint = Blue,
+                                )
+                            } else {
+                                Icon(
+                                    painter = painterResource(R.drawable.favorite),
+                                    contentDescription = "isFavorite",
+                                    tint = Grey4,
+                                )
+                            }
                         }
                     }
                 }

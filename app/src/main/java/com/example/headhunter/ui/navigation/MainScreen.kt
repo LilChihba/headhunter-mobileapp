@@ -4,7 +4,8 @@ import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -24,7 +25,7 @@ fun MainScreen(
 ) {
     val jsonString = LocalContext.current.assets.open("json.json").bufferedReader().use { it.readText() }
     viewModel.loadResponse(jsonString)
-    val responseData = viewModel.response.collectAsState().value
+    val responseData by viewModel.response.observeAsState()
 
     val navController = rememberNavController()
 
@@ -37,8 +38,8 @@ fun MainScreen(
             startDestination = BottomNavItem.SearchPage.route,
             modifier = Modifier.padding(innerPadding),
         ) {
-            composable(BottomNavItem.SearchPage.route) { SearchPage(responseData) }
-            composable(BottomNavItem.FavoritePage.route) { FavoritePage() }
+            composable(BottomNavItem.SearchPage.route) { SearchPage(responseData, viewModel) }
+            composable(BottomNavItem.FavoritePage.route) { FavoritePage(responseData?.vacancies, viewModel) }
             composable(BottomNavItem.ResponsePage.route) { ResponsePage() }
             composable(BottomNavItem.MessagePage.route) { MessagePage() }
             composable(BottomNavItem.ProfilePage.route) { ProfilePage() }
