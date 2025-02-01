@@ -14,7 +14,7 @@ data class Vacancy(
     val company: String,
     val experience: ExperienceDto,
     val publishedDate: String,
-    val isFavorite: Boolean,
+    var isFavorite: Boolean,
     val salary: SalaryDto,
     val schedules: List<String>,
     val appliedNumber: Int? = null,

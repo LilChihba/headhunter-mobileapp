@@ -58,13 +58,15 @@ import com.example.headhunter.ui.theme.Shadows
 import com.example.headhunter.ui.theme.White
 import com.example.headhunter.ui.theme.text1
 import com.example.headhunter.ui.theme.title2
+import com.example.headhunter.viewmodels.ResponseViewModel
 import kotlinx.coroutines.launch
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterialApi::class)
 @Composable
 fun SearchPage(
-    data: Response? = null
+    data: Response? = null,
+    viewModel: ResponseViewModel
 ) {
     val isNextPage = remember { mutableStateOf(false) }
     val lazyListState = rememberLazyListState()
@@ -73,6 +75,7 @@ fun SearchPage(
     if (data == null) {
         return
     }
+
     val keyboardController = LocalSoftwareKeyboardController.current
     Column(
         modifier = Modifier
@@ -267,12 +270,12 @@ fun SearchPage(
                             itemContent = { index ->
                                 if(!isNextPage.value) {
                                     if(index <= 2) {
-                                        CardVacancy(data.vacancies[index])
+                                        CardVacancy(data.vacancies[index], viewModel)
                                     } else {
                                         return@items
                                     }
                                 } else {
-                                    CardVacancy(data.vacancies[index])
+                                    CardVacancy(data.vacancies[index], viewModel)
                                 }
                             }
                         )
@@ -294,7 +297,7 @@ fun SearchPage(
                                         .height(50.dp)
                                 ) {
                                     Text(
-                                        text = "Ещё ${data.vacancies.size} ${getDeclension(data.vacancies.size, "вакансия", "вакансий", "вакансий")}",
+                                        text = "Ещё ${data.vacancies.size} ${getDeclension(data.vacancies.size, "вакансия", "вакансии", "вакансий")}",
                                         style = MaterialTheme.typography.text1,
                                         color = White
                                     )
