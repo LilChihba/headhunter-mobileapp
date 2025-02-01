@@ -249,6 +249,7 @@ fun SearchPage(
                     Text(
                         text = "Вакансии для вас",
                         style = MaterialTheme.typography.title2,
+                        color = White,
                         modifier = Modifier
                             .padding(top = 35.dp)
                     )
