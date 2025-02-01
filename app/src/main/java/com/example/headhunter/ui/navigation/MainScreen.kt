@@ -36,7 +36,7 @@ fun MainScreen(
     val navController = rememberNavController()
 
     Scaffold(
-        bottomBar = { BottomNavigationBar(navController = navController) },
+        bottomBar = { BottomNavigationBar(navController = navController, responseData?.vacancies) },
         modifier = Modifier.navigationBarsPadding()
     ) { innerPadding ->
         NavHost(

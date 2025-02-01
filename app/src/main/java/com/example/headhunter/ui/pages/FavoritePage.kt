@@ -27,7 +27,6 @@ fun FavoritePage(
     viewModel: ResponseViewModel,
     navController: NavController
 ) {
-
     Column(
         modifier = Modifier
             .background(Shadows)

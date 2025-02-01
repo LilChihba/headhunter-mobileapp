@@ -72,7 +72,7 @@ fun Recommendation(
                         color = DarkBlue
                     }
                     if(offer.id != null) {
-                        Box() {
+                        Box {
                             Box(
                                 modifier = Modifier
                                     .size(32.dp)
