@@ -1,4 +1,5 @@
-![Screenshot_2025-02-01-18-17-39-428_com example headhunter](https://github.com/user-attachments/assets/8b36bac9-ece6-4e23-aa71-b7ad57aa6bb9) ![Screenshot_2025-02-01-18-18-01-660_com example headhunter](https://github.com/user-attachments/assets/4d9f8f87-6e47-453b-bd20-ab8708baabf5)
+![Screenshot_2025-02-01-18-17-39-428_com example headhunter](https://github.com/user-attachments/assets/8b36bac9-ece6-4e23-aa71-b7ad57aa6bb9)
+![Screenshot_2025-02-01-18-18-01-660_com example headhunter](https://github.com/user-attachments/assets/4d9f8f87-6e47-453b-bd20-ab8708baabf5)
 ![Screenshot_2025-02-01-18-18-01-660_com example headhunter](https://github.com/user-attachments/assets/4d9f8f87-6e47-453b-bd20-ab8708baabf5)
 ![Screenshot_2025-02-01-18-20-40-454_com example headhunter](https://github.com/user-attachments/assets/e03c521f-1aed-4770-9b63-2fe1f419a0ff)
 ![Screenshot_2025-02-01-18-22-00-167_com example headhunter](https://github.com/user-attachments/assets/84de7e30-e444-412f-add6-05ba918357bb)
