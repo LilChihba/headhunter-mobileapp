@@ -46,6 +46,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.example.headhunter.R
 import com.example.headhunter.models.Response
 import com.example.headhunter.modules.getDeclension
@@ -66,7 +67,8 @@ import kotlinx.coroutines.launch
 @Composable
 fun SearchPage(
     data: Response? = null,
-    viewModel: ResponseViewModel
+    viewModel: ResponseViewModel,
+    navController: NavController
 ) {
     val isNextPage = remember { mutableStateOf(false) }
     val lazyListState = rememberLazyListState()
@@ -270,12 +272,12 @@ fun SearchPage(
                             itemContent = { index ->
                                 if(!isNextPage.value) {
                                     if(index <= 2) {
-                                        CardVacancy(data.vacancies[index], viewModel)
+                                        CardVacancy(data.vacancies[index], viewModel, navController)
                                     } else {
                                         return@items
                                     }
                                 } else {
-                                    CardVacancy(data.vacancies[index], viewModel)
+                                    CardVacancy(data.vacancies[index], viewModel, navController)
                                 }
                             }
                         )

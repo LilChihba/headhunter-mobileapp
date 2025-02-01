@@ -10,6 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.example.headhunter.models.Vacancy
 import com.example.headhunter.modules.getDeclension
 import com.example.headhunter.ui.elements.CardVacancy
@@ -23,7 +24,8 @@ import com.example.headhunter.viewmodels.ResponseViewModel
 @Composable
 fun FavoritePage(
     vacancies: List<Vacancy>? = null,
-    viewModel: ResponseViewModel
+    viewModel: ResponseViewModel,
+    navController: NavController
 ) {
 
     Column(
@@ -59,7 +61,7 @@ fun FavoritePage(
                     },
                     itemContent = { index ->
                         if(vacancies[index].isFavorite) {
-                            CardVacancy(vacancies[index], viewModel)
+                            CardVacancy(vacancies[index], viewModel, navController)
                         }
                     }
                 )

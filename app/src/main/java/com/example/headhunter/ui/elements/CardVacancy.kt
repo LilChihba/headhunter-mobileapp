@@ -40,16 +40,23 @@ import com.example.headhunter.ui.theme.title3
 import com.example.headhunter.viewmodels.ResponseViewModel
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
+import androidx.navigation.NavController
+import com.example.headhunter.modules.toJson
+import java.net.URLEncoder
 
 @Composable
 fun CardVacancy(
     vacancy: Vacancy,
-    viewModel: ResponseViewModel
+    viewModel: ResponseViewModel,
+    navController: NavController
 ) {
     var isFavorite by remember { mutableStateOf(vacancy.isFavorite) }
 
     Button(
-        onClick = {  },
+        onClick = {
+            val vacancyJson = URLEncoder.encode(vacancy.toJson(), "UTF-8")
+            navController.navigate("vacancy/${vacancyJson}")
+        },
         colors = ButtonDefaults.buttonColors(containerColor = Grey1),
         shape = ShapeDefaults.Small,
         contentPadding = PaddingValues(0.dp),
